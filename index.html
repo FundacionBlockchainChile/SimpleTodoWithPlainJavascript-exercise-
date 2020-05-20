@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo App</title>
+  </head>
+  <body>
+    <h1>Todos</h1>
+    <h2>Your best App to organice the day...</h2>
+    <input
+      id="new-todo-text"
+      type="text"
+      placeholder="filter Todos by word ..."
+    />
+    <!-- <select id="new-todo-selector">
+      <option value="true" selected>Completed</option>
+      <option value="false">Incompleted</option>
+    </select> -->
+
+    <label> <input id="checkBox" type="checkbox" />Hide Completed </label>
+
+    <div id="todos-list"></div>
+    <div id="summary"></div>
+    <hr />
+    <button id="button-render-todo">Render Todos</button>
+    <button id="button-delete-todo">Delete Todos</button>
+    <hr />
+
+    <form id="todo-form">
+      <input type="text" placeholder="Add new Todo" name="todoText" />
+      <button>Submit</button>
+    </form>
+
+    <script src="./todos-functions.js"></script>
+    <script src="./app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uuid@latest/dist/umd/uuidv4.min.js"></script>
+    
+  </body>
+</html>
