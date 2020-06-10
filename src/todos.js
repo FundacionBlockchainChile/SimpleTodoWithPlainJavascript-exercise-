@@ -1,8 +1,8 @@
 import { v4 as uuidv4 } from "uuid";
-import { renderTodos, generateTodoDOM, generateSummaryDOM } from './views'
+import { renderTodos, generateTodoDOM, generateSummaryDOM } from "./views";
 
 // Setup the empty todos array
-let todos = []
+let todos = [];
 
 // loadTodos
 // Arguments: none
@@ -10,11 +10,11 @@ let todos = []
 // Fetch existing todos from localStorage
 const loadTodos = () => {
   const todosJSON = localStorage.getItem("todos");
-  
+
   try {
-    return todosJSON ? JSON.parse(todosJSON) : [];
+    todos = todosJSON ? JSON.parse(todosJSON) : [];
   } catch (e) {
-    return [];
+    todos = [];
   }
 };
 
@@ -28,28 +28,21 @@ const saveTodos = () => {
 // getTodos
 // Arguments: none
 // Return value: todos array
-const getTodos = () => todos
+const getTodos = () => todos;
 
 // createTodo
 // Arguments: todo text
 // Return value: none
-const createTodo = (e) => {
-  const text = e.target.elements.text.value.trim();
-  e.preventDefault();
-  if (text.length > 0) {
-    todos.push({
-      id: uuidv4(),
-      text,
-      completed: false,
-    });
-    saveTodos();
-    renderTodos();
-    e.target.elements.text.value = "";
-  }
+const createTodo = (text) => {
+  todos.push({
+    id: uuidv4(),
+    text,
+    completed: false,
+  });
+  saveTodos();  
 };
 
-
-todos = loadTodos();
+loadTodos();
 
 // removeTodo
 // Arguments: id of todo to remove
@@ -60,21 +53,22 @@ const removeTodo = (id) => {
 
   if (todoIndex > -1) {
     todos.splice(todoIndex, 1);
+    saveTodos();
   }
 };
-
 
 // toggleTodo
 // Arguments: id of todo to toggle
 // Return value: none
 // Toggle the completed value for a given todo
 const toggleTodo = (id) => {
-    const todo = todos.find((todo) => todo.id === id)
+  const todo = todos.find((todo) => todo.id === id);
 
-    if (todo) {
-        todo.completed = !todo.completed
-    }
-}
+  if (todo) {
+    todo.completed = !todo.completed;
+    saveTodos();
+  }
+};
 
 // Make sure to call loadTodos and setup the exports
-export { saveTodos, getTodos, createTodo, removeTodo, toggleTodo };
+export { saveTodos, getTodos, createTodo, removeTodo, toggleTodo, loadTodos };
